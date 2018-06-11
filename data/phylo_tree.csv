@@ -1,38 +1,1 @@
-Phylum,Class,Order,Family,Genus,Taxon_name,Short_name,Category
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Achnanthes,Achnanthes subhudsonis var. kraeuselii,ACsubkra,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium minutissimum var. gracillima,AHmingra,0
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium minutissimum,AHminuti,0
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium pyrenaicum,AHpyrena,0
-Chrysophyta,Bacillariophyceae,Pennales,Catenulaceae,Amphora,Amphora pediculus,AMpedcls,1
-Chrysophyta,Bacillariophyceae,Pennales,Pinnulariaceae,Caloneis,Caloneis bacillum,CAbacill,2
-Chrysophyta,Bacillariophyceae,Pennales,Cymbellaceae,Cymbella,Cymbella tumida,CMtumida,0
-Chrysophyta,Bacillariophyceae,Centrales,Stephanodiscaceae,Cyclotella,Cyclotella meneghiniana,CYmenegh,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Eolimna,Eolimna minima,EOminima,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Eolimna,Eolimna subminuscula,EOsubmin,2
-Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia exigua,EUexigua,0
-Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia implicata,EUimplic,0
-Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia minor,EUminor,2
-Chrysophyta,Bacillariophyceae,Pennales,Not Designated,Fistulifera,Fistulifera saprophila,FIsapro,2
-Chrysophyta,Bacillariophyceae,Pennales,Fragilariaceae,Fragilaria,Fragilaria crotonensis,FRcroton,0
-Chrysophyta,Bacillariophyceae,Centrales,Melosiraceae,Melosira,Melosira varians,MEvarian,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Mayamaea,Mayamaea permitis,MYpermit,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula antonii,NAantoni,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula cryptotenelloides,NAcrytds,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula cryptotenella,NAcryten,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula gregaria,NAgregar,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula lanceolata,NAlancel,1
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula submuralis,NAsubmur,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula tripunctata,NAtripun,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia amphibia,NIamphib,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia dissipata,NIdissip,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia fonticola,NIfontic,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia inconspicua,NIincons,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia palea,NIpalea,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Psammothidium,Psammothidium subatomoides,PSsubato,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Planothidium,Planothidium frequentissimum,PTfreq,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Planothidium,Planothidium lanceolatum,PTlanceo,2
-Chrysophyta,Bacillariophyceae,Pennales,Gomphonemataceae,Reimeria,Reimeria sinuata,REsinuta,1
-Chrysophyta,Bacillariophyceae,Pennales,Rhoicospheniaceae,Rhoicosphenia,Rhoicosphenia abbreviata,ROabbre,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Rossithidium,Rossithidium linearis,RSlinea,0
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Rossithidium,Rossithidium pusillum,RSpusill,0
-Chrysophyta,Bacillariophyceae,Pennales,Sellaphoraceae,Sellaphora,Sellaphora atomoides,Sellatom,2
+ale,Class,Order,Family,Genus,Taxon_name,Short_name,CategoryChrysophyta,Bacillariophyceae,Centrales,Melosiraceae,Melosira,Melosira varians,MEvarian,2Chrysophyta,Bacillariophyceae,Centrales,Stephanodiscaceae,Cyclotella,Cyclotella meneghiniana,CYmenegh,2Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Achnanthes,Achnanthes subhudsonis var. kraeuselii,ACsubkra,2Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Planothidium,Planothidium frequentissimum,PTfreq,2Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Planothidium,Planothidium lanceolatum,PTlanceo,2Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Psammothidium,Psammothidium subatomoides,PSsubato,2Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Rossithidium,Rossithidium linearis,RSlinea,1Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Rossithidium,Rossithidium pusillum,RSpusill,1Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium minutissimum,AHminuti,1Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium minutissimum var. gracillima,AHmingra,1Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium pyrenaicum,AHpyrena,1Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia amphibia,NIamphib,2Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia dissipata,NIdissip,2Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia fonticola,NIfontic,2Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia inconspicua,NIincons,2Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia palea,NIpalea,2Chrysophyta,Bacillariophyceae,Pennales,Cymbellaceae,Cymbella,Cymbella tumida,CMtumida,1Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia exigua,EUexigua,1Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia implicata,EUimplic,1Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia minor,EUminor,2Chrysophyta,Bacillariophyceae,Pennales,Fragilariaceae,Fragilaria,Fragilaria crotonensis,FRcroton,1Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Eolimna,Eolimna minima,EOminima,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Eolimna,Eolimna subminuscula,EOsubmin,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Mayamaea,Mayamaea permitis,MYpermit,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula antonii,NAantoni,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula cryptotenella,NAcryten,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula cryptotenelloides,NAcrytds,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula gregaria,NAgregar,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula submuralis,NAsubmur,2Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula tripunctata,NAtripun,2Chrysophyta,Bacillariophyceae,Pennales,Not Designated,Fistulifera,Fistulifera saprophila,FIsapro,2Chrysophyta,Bacillariophyceae,Pennales,Pinnulariaceae,Caloneis,Caloneis bacillum,CAbacill,2Chrysophyta,Bacillariophyceae,Pennales,Rhoicospheniaceae,Rhoicosphenia,Rhoicosphenia abbreviata,ROabbre,2Chrysophyta,Bacillariophyceae,Pennales,Sellaphoraceae,Sellaphora,Sellaphora atomoides,Sellatom,2
