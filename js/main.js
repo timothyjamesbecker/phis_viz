@@ -1,3 +1,45 @@
+var catagories = null;
+
+function get_categories(pt){
+    var C = {},
+        cs = [];
+    for(var i = 0; i<pt.length; i++) {
+        var k = parseInt(pt[i].Category);
+        if (k in C) {
+            C[k] += 1;
+        } else {
+            C[k] = 1;
+            cs.push(parseInt(pt[i].Category));
+        }
+    }
+    var min = 1000000,
+        max = -1000000;
+    for(var i = 0; i < cs.length; i++){
+        if(cs[i]<min){ min = cs[i]; }
+        if(cs[i]>max){ max = cs[i]; }
+    }
+    return max-min+1;
+}
+
+function normalize_samples(st){
+    var min = 1000000,
+        max = -1000000,
+        dif = 0;
+    for(var i = 0; i < st.length;i++){
+        if(st[i].RelAbund>max){
+            max = st[i].RelAbund;
+        }
+        if(st[i].RelAbund<min){
+            min = st[i].RelAbund;
+        }
+    }
+    diff = max-min
+    for(var i = 0; i < st.length;i++){
+        st[i].RelAbund = (st[i].RelAbund-min)/diff
+    }
+    return st;
+}
+
 function category_to_dist(d,m){
     if('category' in d){
         var c = parseInt(d.category);
@@ -329,7 +371,7 @@ function phylo_table_to_viz_tree(D,trim){
     function insert(V,row,i,d){
         if(i>=row.length-3){ //leaf node => path=[leaf]
             var t = {'name':row[i],'data':d};
-            category_to_dist(t.data,3);
+            category_to_dist(t.data,catagories);
             t.data.descendants=0; //update freq by definition of leaf
             t.data.short_name=row[6];
             V.children.push(t); //no children on the leaf nodes
@@ -465,7 +507,7 @@ function sample_table_join_viz_tree(S,T,tr,sid,prop){
                 return {'RelAbund':V.data.RelAbund,'category':V.data.category};
             }
         }
-        propagation(T,3); //3 categories => array of 3 => [1.0,0.0,0.0]
+        propagation(T,catagories); //3 categories => array of 3 => [1.0,0.0,0.0]
     }
     //insert some meta data on a sorted time set to graph.
     return T;
@@ -738,6 +780,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                 if (phylo_error) throw phylo_error;
                 if (sample_error) throw sample_error;
                 phylo_table = phylo_data;
+                catagories = get_categories(phylo_table);
                 sample_table = sample_data;
 
                 //map time-----------------------------------------
