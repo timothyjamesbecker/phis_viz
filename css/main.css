@@ -79,6 +79,14 @@ button:hover{
     font-size:1vh;
 }
 
+#data_check{
+    position: fixed;
+    right:5vw;
+    font-family: Lato;
+    font-weight: 400;
+    font-size:1vh;
+}
+
 #temporal_bar{
     position: fixed;
     bottom:0vh;
