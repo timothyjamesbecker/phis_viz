@@ -6,7 +6,9 @@ var categories = null,
     tree_width_factor = 0.95,
     color_range = [180,0],
     rad_mult = 50,
-    rad_off = 10;
+    rad_off = 14,
+    trunks = 4,
+    power_factor = 0.5;
 
 function get_categories(pt){
     var C = {},
@@ -30,20 +32,26 @@ function get_categories(pt){
 }
 
 function normalize_samples(st){
-    var min = 10000000,
-        max = -10000000,
-        dif = 0;
-    for(var i = 0; i < st.length;i++){
-        if(st[i].RelAbund>max){
+    var min = 1000000,
+        max = 0,
+        diff = 0;
+    for(var i = 0; i < st.length; i++){
+        st[i].RelAbund = parseFloat(st[i].RelAbund);
+        if(st[i].RelAbund > max){
             max = st[i].RelAbund;
         }
-        if(st[i].RelAbund<min){
+        if(st[i].RelAbund < min){
             min = st[i].RelAbund;
         }
     }
-    diff = max-min
-    for(var i = 0; i < st.length;i++){
-        st[i].RelAbund = (st[i].RelAbund-min)/diff
+
+    console.log(max);
+    console.log(min);
+    if(max-min>0) {
+        diff = max - min;
+        for (var i = 0; i < st.length; i++) {
+            st[i].RelAbund = Math.pow((st[i].RelAbund - min)/diff,power_factor);
+        }
     }
     return st;
 }
@@ -994,7 +1002,6 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                     if(phylo_error){ phylo_report.error = phylo_error; }
                     if(sample_error){ sample_report.error = sample_error; }
                     if(geo_error){ geo_report.error = geo_error; }
-
                 });
             });
         });
@@ -1168,7 +1175,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
             .duration(duration)
             .attr("d", diagonal)
             .style("stroke-width",function(d){
-                return d.target.data.RelAbund*2*rad_mult+rad_off;
+                return d.target.data.RelAbund*trunks*rad_mult+rad_off;
             })
             .style("stroke",function(d){
                 if(d.target.data.RelAbund<1e-9){
