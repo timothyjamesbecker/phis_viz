@@ -51,7 +51,6 @@ function normalize_samples(st){
         diff = max - min;
         for (var i = 0; i < st.length; i++) {
             st[i].RelAbund = Math.pow((st[i].RelAbund - min)/diff,power_factor);
-            st[i].RelAbund = (st[i].RelAbund - min) / diff
         }
     }
     return st;
