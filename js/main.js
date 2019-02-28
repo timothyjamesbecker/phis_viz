@@ -5,9 +5,9 @@ var categories = null,
     less_tree_width_factor = 1.5,
     tree_width_factor = 0.95,
     color_range = [180,0],
-    rad_mult = 50,
-    rad_off = 14,
-    trunks = 4,
+    rad_mult = 40,
+    rad_off = 12,
+    trunks = 5,
     power_factor = 0.5;
 
 function get_categories(pt){
