@@ -63,7 +63,7 @@ button:hover{
     color:rgba(0,0,0,1.0);
     background-color:rgba(200,200,200,0.9);
     position:fixed;
-    right:10vh;
+    right:17vh;
     top:0.5vh;
     font-family: Lato;
     font-weight: 400;
@@ -74,6 +74,14 @@ button:hover{
 #map_toggle{
     position: fixed;
     right:1vw;
+    font-family: Lato;
+    font-weight: 400;
+    font-size:1vh;
+}
+
+#data_check{
+    position: fixed;
+    right:5vw;
     font-family: Lato;
     font-weight: 400;
     font-size:1vh;

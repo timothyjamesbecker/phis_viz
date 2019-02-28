@@ -1,4 +1,14 @@
-var catagories = null;
+//globals------------------------------------------------------------------
+var categories = null,
+    time_range = [new Date('01/01/1920'), new Date('01/01/2020')],
+    full_tree_width_factor = 0.95,
+    less_tree_width_factor = 1.5,
+    tree_width_factor = 0.95,
+    color_range = [180,0],
+    rad_mult = 50,
+    rad_off = 14,
+    trunks = 4,
+    power_factor = 0.5;
 
 function get_categories(pt){
     var C = {},
@@ -12,8 +22,8 @@ function get_categories(pt){
             cs.push(parseInt(pt[i].Category));
         }
     }
-    var min = 1000000,
-        max = -1000000;
+    var min = 10000000,
+        max = -10000000;
     for(var i = 0; i < cs.length; i++){
         if(cs[i]<min){ min = cs[i]; }
         if(cs[i]>max){ max = cs[i]; }
@@ -23,19 +33,26 @@ function get_categories(pt){
 
 function normalize_samples(st){
     var min = 1000000,
-        max = -1000000,
-        dif = 0;
-    for(var i = 0; i < st.length;i++){
-        if(st[i].RelAbund>max){
+        max = 0,
+        diff = 0;
+    for(var i = 0; i < st.length; i++){
+        st[i].RelAbund = parseFloat(st[i].RelAbund);
+        if(st[i].RelAbund > max){
             max = st[i].RelAbund;
         }
-        if(st[i].RelAbund<min){
+        if(st[i].RelAbund < min){
             min = st[i].RelAbund;
         }
     }
-    diff = max-min
-    for(var i = 0; i < st.length;i++){
-        st[i].RelAbund = (st[i].RelAbund-min)/diff
+
+    console.log(max);
+    console.log(min);
+    if(max-min>0) {
+        diff = max - min;
+        for (var i = 0; i < st.length; i++) {
+            st[i].RelAbund = Math.pow((st[i].RelAbund - min)/diff,power_factor);
+            st[i].RelAbund = (st[i].RelAbund - min) / diff
+        }
     }
     return st;
 }
@@ -114,7 +131,7 @@ function sample_table_temporal_analysis(st,s_idx){
     var S = {},
         stats = {'min':1.0,'max':0.0,'sum':0.0,'n':st.length,
                  'd_min':1.0,'d_max':0.0,'d_sum':0.0, 'center':new_vector(s_idx),
-                 'diffs':{},'norm_diffs':{},'sites':{},'t_start':new Date('1/1/2020'),'t_stop':new Date('1/1/2010')};
+                 'diffs':{},'norm_diffs':{},'sites':{},'t_start':time_range[1],'t_stop':time_range[0]};
 
     function new_vector(idx){
         var m = [];
@@ -371,9 +388,9 @@ function phylo_table_to_viz_tree(D,trim){
     function insert(V,row,i,d){
         if(i>=row.length-3){ //leaf node => path=[leaf]
             var t = {'name':row[i],'data':d};
-            category_to_dist(t.data,catagories);
+            category_to_dist(t.data,categories);
             t.data.descendants=0; //update freq by definition of leaf
-            t.data.short_name=row[6];
+            t.data.short_name=row[row.length-2];
             V.children.push(t); //no children on the leaf nodes
         }
         else{ //inner nodes
@@ -507,7 +524,7 @@ function sample_table_join_viz_tree(S,T,tr,sid,prop){
                 return {'RelAbund':V.data.RelAbund,'category':V.data.category};
             }
         }
-        propagation(T,catagories); //3 categories => array of 3 => [1.0,0.0,0.0]
+        propagation(T,categories); //3 categories => array of 3 => [1.0,0.0,0.0]
     }
     //insert some meta data on a sorted time set to graph.
     return T;
@@ -515,13 +532,11 @@ function sample_table_join_viz_tree(S,T,tr,sid,prop){
 
 function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                               site_geojson_url,map_id,mapbox) {
-    var colors = {0:'rgba(0,0,160,0.5)',1:'rgba(160,0,160,0.5)',2:'rgba(0,160,0,0.5)'}; //can be anything you want
     var attach_id = document.getElementById('phis_viz');
     var margin = {top:   attach_id.clientHeight/45,
                   bottom:attach_id.clientHeight/45,
                   right: attach_id.clientWidth/45,
                   left:  attach_id.clientWidth/45};
-    var tree_width_factor = 1.3;
     var width = attach_id.clientWidth/tree_width_factor - (margin.left + margin.right);
     var height = attach_id.clientHeight - (margin.top + margin.bottom);
     var i = 0,
@@ -529,10 +544,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
         root = {'x0':height/2,'y0':0,'sim':false},
         selected_phis_node = null,
         last_phis_color = null,
-        color_range = [250,150],
-        tree_width_factor = 1.2,
         temporal_list = [],
-        time_range = [new Date('01/01/2010'), new Date('01/01/2020')],
         selected_time_slice = null,
         time_state = {pt:null,st:null,tl:null,sid:null,
                       mode:'distance',s_idx:null,refresh:true},
@@ -668,8 +680,8 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                             selected_time_slice = d3.select(this);
                             selected_geo_json['time'] = selected_time_slice;
                         }
-                        if(isNaN(d.value)){ return 4;  }
-                        else{ return 4 + 20 * d.value; }
+                        if(isNaN(d.value)){ return rad_off;  }
+                        else{ return rad_off + rad_mult * d.value; }
                     })
                     .attr('cy', function (d) {
                         return h / 2 - 2;
@@ -780,8 +792,8 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                 if (phylo_error) throw phylo_error;
                 if (sample_error) throw sample_error;
                 phylo_table = phylo_data;
-                catagories = get_categories(phylo_table);
-                sample_table = sample_data;
+                categories = get_categories(phylo_table);
+                sample_table = normalize_samples(sample_data);
 
                 //map time-----------------------------------------
                 geojsonFeature = geo_data; //load your geojson data
@@ -813,7 +825,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                 }
 
                 var selected_options = {
-                    radius: 12,
+                    radius: rad_mult/6.0,
                     fillColor: "rgb(250,250,250)",
                     color: "rgb(255,255,255)",
                     opacity: 1.0,
@@ -821,7 +833,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                 };
 
                 var unselected_options = {
-                    radius: 6,
+                    radius: rad_mult/8.0,
                     fillColor: "rgb(25,25,25)",
                     color: "rgb(200,200,200)",
                     opacity: 0.6,
@@ -829,7 +841,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                 };
 
                 var hover_options = {
-                    radius: 8,
+                    radius: rad_mult/12.0,
                     fillColor: "rgb(75,75,75)",
                     color: "rgb(255,255,255)",
                     opacity: 1.0,
@@ -969,16 +981,35 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
         var v = document.getElementById('phis_viz').clientWidth;
         if(w<=0.1){
             // console.log('map is open...');
-            tree_width_factor = 1.2;
+            tree_width_factor = full_tree_width_factor;
             $('#map_side').css('width','49%');
         }
         if(w/v > 0.45 && w/v < 0.55){
             // console.log('map is closed...');
-            tree_width_factor = 1.0;
+            tree_width_factor = less_tree_width_factor;
             $('#map_side').css('width','0%');
         }
         update(root);
-    })
+    });
+
+    $('#data_check_button').click(function(){
+        //[1] do a file check on the data
+        var phlyo_report = {},
+            sample_report = {},
+            geo_report = {};
+        d3.csv(phylo_data_url, function (phylo_error, phylo_data) {
+            d3.csv(sample_data_url, function (sample_error, sample_data) {
+                d3.json(site_geojson_url,function(geo_error, geo_data) {
+                    if(phylo_error){ phylo_report.error = phylo_error; }
+                    if(sample_error){ sample_report.error = sample_error; }
+                    if(geo_error){ geo_report.error = geo_error; }
+                });
+            });
+        });
+        //[2] launch an alert with the report for each data section
+    });
+
+
 
     function update(source) {
         var margin = {top:   attach_id.clientHeight/45,
@@ -1031,7 +1062,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                 return d.children || d._children ? 0 : 10;
             })
             .attr("y", function (d) {
-                return d.children || d._children ? -1*(d.data.RelAbund*50+10) : 0;
+                return d.children || d._children ? -1*(d.data.RelAbund*rad_mult+rad_off) : 0;
             })
             .attr("dy", ".35em")
             .style('font-size','0.75vw')
@@ -1057,7 +1088,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
 
         nodeUpdate.select("circle")
             .attr("r", function(d){
-                return d._children ? 50*d.data.RelAbund+8:40*d.data.RelAbund+6;
+                return d._children ? rad_mult*d.data.RelAbund+rad_off:(rad_mult-rad_off)*d.data.RelAbund+rad_off;
             })
             .style("fill", function(d) {
                 var c = hsla_color_gradient(d.data.category,color_range,0.75);
@@ -1076,10 +1107,10 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
 
         nodeUpdate.select("text")
             .attr("x", function (d) {
-                return d.children || d._children ? 0 : 10;
+                return d.children || d._children ? 0 : rad_off;
             })
             .attr("y", function (d) {
-                return d.children || d._children ? -1*(d.data.RelAbund*50+10) : 0;
+                return d.children || d._children ? -1*(d.data.RelAbund*rad_mult+rad_off) : 0;
             })
             .attr("dy", ".35em")
             .attr("text-anchor", function (d) {
@@ -1102,10 +1133,10 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
             .attr("r", 1e-6);
         nodeExit.select("text")
             .attr("x", function (d) {
-                return d.children || d._children ? 0 : 10;
+                return d.children || d._children ? 0 : rad_off;
             })
             .attr("y", function (d) {
-                return d.children || d._children ? -1*(d.data.RelAbund*50+10) : 0;
+                return d.children || d._children ? -1*(d.data.RelAbund*rad_mult+rad_off) : 0;
             })
             .attr("dy", ".35em")
             .attr("text-anchor", function (d) {
@@ -1145,7 +1176,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
             .duration(duration)
             .attr("d", diagonal)
             .style("stroke-width",function(d){
-                return d.target.data.RelAbund*100.0+4;
+                return d.target.data.RelAbund*trunks*rad_mult+rad_off;
             })
             .style("stroke",function(d){
                 if(d.target.data.RelAbund<1e-9){
@@ -1177,10 +1208,10 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
         var self = d3.select(this);
         self.attr("r", function(d){
             //console.log(d);
-            return 60*d.data.RelAbund+8;
+            return (rad_mult+rad_off)*d.data.RelAbund+rad_off;
         })
             .attr("y", function (d) {
-                return d.children || d._children ? -1*(d.data.descendants*30) : 0;
+                return d.children || d._children ? -1*(d.data.descendants*(rad_mult-rad_off)) : 0;
             });
         var display = ' relative abundance for '+d.name;
         d3.select('#nav_data').html(d3.format(".5f")(d.data.RelAbund)+display);
@@ -1189,7 +1220,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
     function mouse_out(d){
         var self = d3.select(this);
         self.attr("r", function (d) {
-            return 40 * d.data.RelAbund + 6;
+            return (rad_mult-rad_off)*d.data.RelAbund + rad_off;
         });
         // if('children' in d || '_children' in d) {
         //     d3.select(this.parentNode).select('text')
@@ -1212,14 +1243,14 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
         }
 
         var presence_options = {
-            radius: 12,
+            radius: rad_mult/4.0,
             fillColor: "rgb(255,255,255)",
             color: "rgb(50,50,50)",
             opacity: 0.2,
             fillOpacity: 0.6
         };
         var similarity_options = {
-            radius: 12,
+            radius: rad_mult/4.0,
             fillColor: "rgb(255,255,255)",
             color: "rgb(50,50,50)",
             opacity: 0.8,
@@ -1276,7 +1307,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                 last_phis_color = parent.style('fill');
                 lastsitesLayer = L.geoJSON(sitesFeature,{
                     pointToLayer: function (feature, latlng) {
-                        presence_options.radius = 8+30*sites[feature.properties.SID][0];
+                        presence_options.radius = rad_off+0.5*rad_mult*sites[feature.properties.SID][0];
                         presence_options.fillColor = 'hsla(' + dist_to_color(d.data.category, color_range) + ',100%,50%,0.75)';
                         return L.circleMarker(latlng, presence_options);
                     }//,onEachFeature: onEachFeature
@@ -1402,7 +1433,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                             pointToLayer: function (feature, latlng) {
                                 feature.properties.sim = D[feature.properties.SID];
                                 if(D[feature.properties.SID]>=filter) {
-                                    similarity_options.radius = 8 + 30 * D[feature.properties.SID];
+                                    similarity_options.radius = rad_off+0.5*rad_mult*D[feature.properties.SID];
                                 }else{
                                     similarity_options.radius = 0;
                                 }
@@ -1411,7 +1442,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
                                     // similarity_options.color = 'rgb(255,0,0)';
                                     similarity_options.fillOpacity = 1.0;
                                     similarity_options.opacity = 1.0;
-                                    similarity_options.radius = 8 + 30 * D[feature.properties.SID];
+                                    similarity_options.radius = rad_off+0.5*rad_mult* D[feature.properties.SID];
                                 }else{
                                     similarity_options.fillColor = 'rgb(100,100,100)';
                                     similarity_options.color = 'rgb(50,50,50)';
@@ -1438,7 +1469,7 @@ function phlyo_tree_map_graph(phylo_data_url,sample_data_url,phylo_id,
 
                         lastsitesLayer = L.geoJSON(sitesFeature,{
                             pointToLayer: function (feature, latlng) {
-                                similarity_options.radius = 8+30*D[feature.properties.SID];
+                                similarity_options.radius = rad_off+0.5*rad_mult*D[feature.properties.SID];
                                 return L.circleMarker(latlng, similarity_options);
                             }//,onEachFeature: onEachFeature
                         }).addTo(mymap);
@@ -1490,6 +1521,7 @@ $(function() {
     $('<span id="nav_data"></span>').appendTo('#nav_bar');
     $('<span id="nav_search"></span>').appendTo('#nav_bar');
     $('<span id="map_toggle"><button id="map_toggle_button">map\></button></span>').appendTo('#nav_bar');
+    $('<span id="data_check"><button id="data_check_button">data\?</button></span>').appendTo('#nav_bar');
 
     //lower temporal bar for drilling down into a SID data set once it has already been selected
     $('<div id="temporal_bar"></div>').appendTo('body')

@@ -1,35 +1,15 @@
-Phylum,Class,Order,Family,Genus,Taxon_name,Short_name,Category
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Achnanthes,Achnanthes subhudsonis var. kraeuselii,ACsubkra,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Planothidium,Planothidium frequentissimum,PTfreq,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Planothidium,Planothidium lanceolatum,PTlanceo,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Psammothidium,Psammothidium subatomoides,PSsubato,2
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Rossithidium,Rossithidium linearis,RSlinea,0
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthaceae,Rossithidium,Rossithidium pusillum,RSpusill,0
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium minutissimum,AHminuti,0
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium minutissimum var. gracillima,AHmingra,0
-Chrysophyta,Bacillariophyceae,Pennales,Achnanthidiaceae,Achnanthidium,Achnanthidium pyrenaicum,AHpyrena,0
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia amphibia,NIamphib,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia dissipata,NIdissip,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia fonticola,NIfontic,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia inconspicua,NIincons,2
-Chrysophyta,Bacillariophyceae,Pennales,Bacillariaceae,Nitzschia,Nitzschia palea,NIpalea,2
-Chrysophyta,Bacillariophyceae,Pennales,Cymbellaceae,Cymbella,Cymbella tumida,CMtumida,0
-Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia exigua,EUexigua,0
-Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia implicata,EUimplic,0
-Chrysophyta,Bacillariophyceae,Pennales,Eunotiaceae,Eunotia,Eunotia minor,EUminor,2
-Chrysophyta,Bacillariophyceae,Pennales,Fragilariaceae,Fragilaria,Fragilaria crotonensis,FRcroton,0
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Eolimna,Eolimna minima,EOminima,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Eolimna,Eolimna subminuscula,EOsubmin,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Mayamaea,Mayamaea permitis,MYpermit,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula antonii,NAantoni,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula cryptotenella,NAcryten,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula cryptotenelloides,NAcrytds,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula gregaria,NAgregar,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula submuralis,NAsubmur,2
-Chrysophyta,Bacillariophyceae,Pennales,Naviculaceae,Navicula,Navicula tripunctata,NAtripun,2
-Chrysophyta,Bacillariophyceae,Pennales,Not Designated,Fistulifera,Fistulifera saprophila,FIsapro,2
-Chrysophyta,Bacillariophyceae,Pennales,Pinnulariaceae,Caloneis,Caloneis bacillum,CAbacill,2
-Chrysophyta,Bacillariophyceae,Pennales,Rhoicospheniaceae,Rhoicosphenia,Rhoicosphenia abbreviata,ROabbre,2
-Chrysophyta,Bacillariophyceae,Pennales,Sellaphoraceae,Sellaphora,Sellaphora atomoides,Sellatom,2
-Chrysophyta,Bacillariophyceae,Centrales,Melosiraceae,Melosira,Melosira varians,MEvarian,2
-Chrysophyta,Bacillariophyceae,Centrales,Stephanodiscaceae,Cyclotella,Cyclotella meneghiniana,CYmenegh,2
+Infraphylum,Class,Order,Family,Taxon_name,Short_name,Category
+Gnathostomata,Teleostei,Salmoniformes,Salmonidae,Salvelinus fontinalis,Brook Trout,0
+Gnathostomata,Teleostei,Scorpaeniformes,Cottidae,Cottus cognatus,Slimy Sculpin,0
+Gnathostomata,Teleostei,Salmoniformes,Salmonidae,Salmo trutta,Brown Trout,1
+Gnathostomata,Teleostei,Anguilliformes,Anguillidae,Anguilla rostrata,American Eel,2
+Gnathostomata,Teleostei,Perciformes,Centrarchidae,Lepomis macrochirus,Bluegill,2
+Gnathostomata,Teleostei,Cypriniformes,Cyprinidae,Luxilus cornutus,Common Shiner,2
+Gnathostomata,Teleostei,Cypriniformes ,Cyprinidae,Semotilus corporalis,Fallfish,2
+Gnathostomata,Teleostei,Perciformes,Percidae,Etheostoma olmstedi,Tessellated Darter,2
+Gnathostomata,Teleostei,Siluriformes,Ictaluridae,Ameiurus nebulosus,Brown Bullhead,3
+Gnathostomata,Teleostei,Cypriniformes,Cyprinidae,Exoglossum maxillingua,Cutlips Minnow,3
+Gnathostomata,Teleostei,Perciformes,Centrarchidae,Lepomis auritus,Redbreast Sunfish,3
+Gnathostomata,Teleostei,Perciformes,Centrarchidae,Ambloplites rupestris,Rock Bass,3
+Gnathostomata,Teleostei,Perciformes,Centrarchidae,Micropterus dolomieu,Smallmouth Bass,3
+Gnathostomata,Teleostei,Siluriformes,Ictaluridae,Ameiurus natalis,Yellow Bullhead,3
